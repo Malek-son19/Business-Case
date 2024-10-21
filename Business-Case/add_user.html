@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+<body>
+    <h1>Add New User</h1>
+    <form id="addUserForm">
+        Name: <input type="text" id="name" required><br>
+        Number: <input type="text" id="number" required><br>
+        Email: <input type="email" id="email" required><br>
+        Floor: <select id="floor" required>
+            <option value="First Floor">First Floor</option>
+            <option value="Second Floor">Second Floor</option>
+            <option value="Third Floor">Third Floor</option>
+        </select><br>
+        <button type="button" onclick="addUser()">Submit</button>
+    </form>
+    <script src="add_user.js"></script>
+</body>
+</html>
