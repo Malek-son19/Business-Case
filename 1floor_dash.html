@@ -3,10 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Floor Dashboard</title>
+    <title>User Dashboard 1</title>
+    
+    <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
 </head>
 <body>
-    <h1>First Floor Dashboard</h1>
-    <p>Welcome to the First Floor!</p>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="profile-section">
+            <a href="profile1.html"><img src="https://th.bing.com/th/id/OIP.4j4jNaPU3bIzDJHBj6HDSwHaHa?w=175&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Profile 1"></a>
+            <h1>Dashboard 1</h1>
+        </div>
+    </div>
+
+    <!-- Dashboard Content Section -->
+    <div class="dashboard">
+        <div class="sensor-area">
+            <!-- Sensor 1: Fire -->
+            <div class="sensor">
+                <i class="fas fa-fire sensor-icon"></i>
+                <div class="sensor-title">Fire Sensor</div>
+                <div id="fire-status" class="status-indicator"></div>
+                <div class="status-text">Sensor Status</div>
+            </div>
+
+            <!-- Sensor 2: Smoke -->
+            <div class="sensor">
+                <i class="fas fa-smog sensor-icon"></i>
+                <div class="sensor-title">Smoke Sensor</div>
+                <div id="smoke-status" class="status-indicator"></div>
+                <div class="status-text">Sensor Status</div>
+            </div>
+
+            <!-- Sensor 3: Heat -->
+            <div class="sensor">
+                <i class="fas fa-temperature-high sensor-icon"></i>
+                <div class="sensor-title">Heat Sensor</div>
+                <div id="heat-status" class="status-indicator"></div>
+                <div class="status-text">Sensor Status</div>
+            </div>
+        </div>
+    </div>
+<script>
+    // Load the sensor statuses from localStorage on page load
+    function loadStatuses() {
+        const fireStatus = localStorage.getItem('fire-status-1') || 'green';
+        const smokeStatus = localStorage.getItem('smoke-status-1') || 'green';
+        const heatStatus = localStorage.getItem('heat-status-1') || 'green';
+
+        document.getElementById('fire-status').className = 'status-indicator ' + fireStatus;
+        document.getElementById('smoke-status').className = 'status-indicator ' + smokeStatus;
+        document.getElementById('heat-status').className = 'status-indicator ' + heatStatus;
+    }
+
+    // Set random status with a 20% chance for red
+    function setRandomStatus(sensorId, storageKey) {
+        const isProblem = Math.random() < 0.2; // 20% chance
+        const status = isProblem ? 'red' : 'green';
+
+        document.getElementById(sensorId).className = 'status-indicator ' + status;
+        localStorage.setItem(storageKey, status);
+    }
+
+    // Function to run every 5 hours
+    function updateStatuses() {
+        setRandomStatus('fire-status', 'fire-status-1');
+        setRandomStatus('smoke-status', 'smoke-status-1');
+        setRandomStatus('heat-status', 'heat-status-1');
+
+        // Schedule the next update in 5 hours (5 * 60 * 60 * 1000 milliseconds)
+        setTimeout(updateStatuses, 5 * 60 * 60 * 1000);
+    }
+
+    // Initialize on page load
+    window.onload = function() {
+        loadStatuses();
+        updateStatuses(); // Start the first 5-hour cycle
+    };
+</script>
+
 </body>
 </html>

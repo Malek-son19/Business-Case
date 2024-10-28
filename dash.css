@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Section */
+.header {
+    background-color: #D32F2F;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+}
+
+.profile-section img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-section img:hover {
+    transform: scale(1.1);
+}
+
+.header h1 {
+    font-size: 24px;
+    color: white;
+}
+
+/* Dashboard Layout */
+.dashboard {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #f9f9f9;
+}
+
+/* Sensor Area */
+.sensor-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 30px;
+}
+
+.sensor {
+    width: 30%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.sensor:hover {
+    transform: translateY(-5px);
+}
+
+.sensor-icon {
+    font-size: 80px;
+    color: #D32F2F;
+    margin-bottom: 20px;
+}
+
+.sensor-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Status Indicator */
+.status-indicator {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 10px;
+    background-color: grey; /* Default: off */
+}
+
+.status-indicator.green {
+    background-color: green;
+}
+
+.status-indicator.red {
+    background-color: red;
+}
+
+.status-text {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Admin Dash Styling */
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.control {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.control label {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #333;
+}
+
+/* Custom Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #bbb;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: white;
+    bottom: 1px;
+    left: 1px;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #D32F2F; /* Active color (red) */
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Profile Page Styling */
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.profile-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: center;
+}
+
+.profile-content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.profile-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.profile-details div {
+    font-size: 18px;
+    color: #333;
+}
+
+.edit-button {
+    background-color: #D32F2F;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color: #b31e1e;
+}

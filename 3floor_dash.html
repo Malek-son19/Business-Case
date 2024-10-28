@@ -1,14 +1,66 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Third Floor Dashboard</title>
+    <title>User Dashboard 3</title>
+    
+    <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
 </head>
 <body>
-    <h1>Third Floor Dashboard</h1>
-    <p>Welcome to the Third Floor!</p>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="profile-section">
+            <a href="profile3.html"><img src="https://th.bing.com/th/id/OIP.4j4jNaPU3bIzDJHBj6HDSwHaHa?w=175&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Profile 3"></a>
+            <h1>Dashboard 3</h1>
+        </div>
+    </div>
+
+    <!-- Dashboard Content Section -->
+    <div class="dashboard">
+        <div class="sensor-area">
+            <!-- Sensor 1: Fire -->
+            <div class="sensor">
+                <i class="fas fa-fire sensor-icon"></i>
+                <div class="sensor-title">Fire Sensor</div>
+                <div id="fire-status" class="status-indicator"></div>
+                <div class="status-text">Sensor Status</div>
+            </div>
+
+            <!-- Sensor 2: Smoke -->
+            <div class="sensor">
+                <i class="fas fa-smog sensor-icon"></i>
+                <div class="sensor-title">Smoke Sensor</div>
+                <div id="smoke-status" class="status-indicator"></div>
+                <div class="status-text">Sensor Status</div>
+            </div>
+
+            <!-- Sensor 3: Heat -->
+            <div class="sensor">
+                <i class="fas fa-temperature-high sensor-icon"></i>
+                <div class="sensor-title">Heat Sensor</div>
+                <div id="heat-status" class="status-indicator"></div>
+                <div class="status-text">Sensor Status</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load the sensor statuses from localStorage for Dashboard 1
+        window.onload = function() {
+            const fireStatus = localStorage.getItem('fire-status-3') || 'grey';
+            const smokeStatus = localStorage.getItem('smoke-status-3') || 'grey';
+            const heatStatus = localStorage.getItem('heat-status-3') || 'grey';
+            
+            document.getElementById('fire-status').style.backgroundColor = fireStatus;
+            document.getElementById('smoke-status').style.backgroundColor = smokeStatus;
+            document.getElementById('heat-status').style.backgroundColor = heatStatus;
+        };
+    </script>
+
 </body>
 </html>

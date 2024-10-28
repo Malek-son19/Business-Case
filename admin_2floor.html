@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel 1</title>
+    <style>
+        /* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #D32F2F;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-section img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: white;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+            flex: 1;
+        }
+
+        .switches-section {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .control {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .control label {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #333;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #bbb;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background-color: white;
+            bottom: 1px;
+            left: 1px;
+            transition: 0.4s;
+        }
+
+        input:checked + .slider {
+            background-color: #D32F2F;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        /* Mini Dashboard */
+        .mini-dashboard {
+            width: 50%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sensor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sensor i {
+            font-size: 60px;
+            color: #D32F2F;
+        }
+
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-top: 10px;
+            background-color: grey; /* Default: off */
+        }
+
+        .status-indicator.green {
+            background-color: green;
+        }
+
+        .status-indicator.red {
+            background-color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <script>
+        // Function to update sensor status in localStorage for Control Panel 1
+        function updateSensorStatus(sensor, isChecked) {
+            let status = isChecked ? 'green' : 'grey';
+            localStorage.setItem(sensor + '-status-2', status);  // Store for Dashboard 1
+            updateMiniDashboard(sensor, status);  // Update mini dashboard
+        }
+
+        // Load previous states and update mini dashboard
+        window.onload = function() {
+            const fireStatus = localStorage.getItem('fire-status-2') || 'grey';
+            const smokeStatus = localStorage.getItem('smoke-status-2') || 'grey';
+            const heatStatus = localStorage.getItem('heat-status-2') || 'grey';
+
+            document.getElementById('fire-toggle').checked = fireStatus === 'green';
+            document.getElementById('smoke-toggle').checked = smokeStatus === 'green';
+            document.getElementById('heat-toggle').checked = heatStatus === 'green';
+
+            // Initialize the mini dashboard based on stored values
+            updateMiniDashboard('fire', fireStatus);
+            updateMiniDashboard('smoke', smokeStatus);
+            updateMiniDashboard('heat', heatStatus);
+        }
+
+        // Function to update the mini dashboard
+        function updateMiniDashboard(sensor, status) {
+            document.getElementById(sensor + '-indicator-mini').className = 'status-indicator ' + status;
+        }
+    </script>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="profile-section">
+            <a href="profile2.html"><img src="https://th.bing.com/th/id/OIP.4j4jNaPU3bIzDJHBj6HDSwHaHa?w=175&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Profile 1"></a>
+        </div>
+        <h1>Dashboard Control Panel</h1>
+    </div>
+
+    <!-- Control Panel Layout -->
+    <div class="control-panel">
+        <!-- Middle Section: Toggle Switches -->
+        <div class="switches-section">
+            <div class="control">
+                <label for="fire-toggle">Fire Sensor</label>
+                <label class="switch">
+                    <input type="checkbox" id="fire-toggle" onchange="updateSensorStatus('fire', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="control">
+                <label for="smoke-toggle">Smoke Sensor</label>
+                <label class="switch">
+                    <input type="checkbox" id="smoke-toggle" onchange="updateSensorStatus('smoke', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="control">
+                <label for="heat-toggle">Heat Sensor</label>
+                <label class="switch">
+                    <input type="checkbox" id="heat-toggle" onchange="updateSensorStatus('heat', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Right Section: Mini Dashboard -->
+        <div class="mini-dashboard">
+            <div class="sensor">
+                <i class="fas fa-fire"></i>
+                <div id="fire-indicator-mini" class="status-indicator"></div>
+            </div>
+
+            <div class="sensor">
+                <i class="fas fa-smog"></i>
+                <div id="smoke-indicator-mini" class="status-indicator"></div>
+            </div>
+
+            <div class="sensor">
+                <i class="fas fa-temperature-high"></i>
+                <div id="heat-indicator-mini" class="status-indicator"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

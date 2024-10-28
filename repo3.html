@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor 1 Sensor Status Report</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #D32F2F;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin-left: 20px;
+        }
+
+        .content {
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .log-entry {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .log-entry div {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .download-btn {
+            background-color: #D32F2F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            background-color: #b31e1e;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Floor 3 Sensor Status Report</h1>
+        <button onclick="window.location.href='admin_dash.html'" class="home-btn">back</button>
+    </div>
+
+    <!-- Report Content -->
+    <div class="content" id="reportContent">
+        <h2>Log of Sensor Issues for Floor 3</h2>
+        <!-- Logs will be dynamically added here -->
+    </div>
+
+    <button class="download-btn" onclick="downloadReport()">Download Report</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            displayLogs();
+        });
+
+        function displayLogs() {
+            const logs = JSON.parse(localStorage.getItem('sensorLogs') || '[]');
+            const reportContent = document.getElementById('reportContent');
+            const floorLogs = logs.filter(log => log.floor === "3"); // Filter logs for Floor 3
+
+            floorLogs.forEach(log => {
+                const logEntry = document.createElement('div');
+                logEntry.classList.add('log-entry');
+                logEntry.innerHTML = `
+                    <div><strong>Sensor:</strong> ${log.type}</div>
+                    <div><strong>Last Problem:</strong> ${log.dateTime}</div>
+                `;
+                reportContent.appendChild(logEntry);
+            });
+
+            if (floorLogs.length === 0) {
+                reportContent.innerHTML += `<p>No issues logged yet for Floor 3.</p>`;
+            }
+        }
+
+        // Function to download the report
+        function downloadReport() {
+            const logs = JSON.parse(localStorage.getItem('sensorLogs') || '[]');
+            const floorLogs = logs.filter(log => log.floor === "3");
+
+            if (floorLogs.length === 0) {
+                alert("No logs to download for Floor 3.");
+                return;
+            }
+
+            let reportContent = "Floor 3 Sensor Status Report\n\n";
+            floorLogs.forEach(log => {
+                reportContent += `Sensor: ${log.type}\nLast Problem: ${log.dateTime}\n\n`;
+            });
+
+            const blob = new Blob([reportContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'floor1_sensor_status_report.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>

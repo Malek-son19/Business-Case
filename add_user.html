@@ -4,6 +4,89 @@
     <meta charset="UTF-8">
     <title>Add User</title>
 </head>
+<style>
+    /* Global styles */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+
+    /* Form Container */
+    .form-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #D32F2F;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 16px;
+        color: #333;
+        display: block;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    /* Button Styling */
+    .button {
+        background-color: #D32F2F;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+    }
+
+    .button:hover {
+        background-color: #b31e1e;
+    }
+
+    /* Link Styling */
+    .admin-link {
+        display: inline-block;
+        margin-top: 15px;
+        font-size: 16px;
+        color: #D32F2F;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .admin-link:hover {
+        color: #b31e1e;
+    }
+</style>
 <body>
     <h1>Add New User</h1>
     <form id="addUserForm">
@@ -16,6 +99,7 @@
             <option value="Third Floor">Third Floor</option>
         </select><br>
         <button type="button" onclick="addUser()">Submit</button>
+        <a href="admin_dash.html">Admin log</a>
     </form>
     <script src="add_user.js"></script>
 </body>

@@ -4,24 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-  <!---  <link rel="stylesheet" href="styles.css" />-->
-    
+    <style>
+        /* CSS styles */
+  /* Global styles */
+  * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Header styling */
+        h1 {
+            color: #D32F2F;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Button styling */
+        .button {
+            background-color: #D32F2F;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #b31e1e;
+        }
+
+        /* User list styling */
+        #userList {
+            list-style-type: none;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .user-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .user-entry span {
+            flex: 1;
+            margin-right: 20px;
+            color: #333;
+        }
+
+        /* Button styles within user entry */
+        .entry-button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .edit-button {
+            background-color: #4CAF50;
+        }
+
+        .edit-button:hover {
+            background-color: #45a049;
+        }
+
+        .delete-button {
+            background-color: #D32F2F;
+        }
+
+        .delete-button:hover {
+            background-color: #b31e1e;
+        }
+
+        .copy-button {
+            background-color: #4285F4;
+        }
+
+        .copy-button:hover {
+            background-color: #357ae8;
+        }
+
+        /* Logout button */
+        .logout-button {
+            background-color: #D32F2F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #b31e1e;
+        }
+
+
+
+    </style>
 </head>
 <body>
-    
-        <h1>Admin Dashboard</h1>
-        <button onclick="window.location.href='add_user.html'">Add User</button>
-        <ul id="userList">
-            <!-- Users will be listed here -->
-        </ul>
-        <button onclick="window.location.href='index.html'">logout</button>
 
+    <h1>Admin Dashboard</h1>
+    <button class="button" onclick="window.location.href='add_user.html'">Add User</button>
+
+    <ul id="userList">
+        <!-- Users will be listed here dynamically -->
+    </ul>
+
+    <button class="button" onclick="window.location.href='index.html'">Logout</button>
+<!--  Report Buttons for Each Floor -->
+<button class="button" onclick="window.location.href='repo1.html'">Floor 1 Report</button>
+<button class="button" onclick="window.location.href='repo2.html'">Floor 2 Report</button>
+<button class="button" onclick="window.location.href='repo3.html'">Floor 3 Report</button>
     <script>
         function logout() {
             window.location.href = 'index.html';
         }
-      
     </script>
-     <script src="admin_dash.js"></script>
+
+    <!-- External JavaScript File -->
+    <script src="admin_dash.js"></script>
 </body>
 </html>
